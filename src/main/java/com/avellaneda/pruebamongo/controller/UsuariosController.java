@@ -1,5 +1,6 @@
 package com.avellaneda.pruebamongo.controller;
 
+import com.avellaneda.pruebamongo.Model.Credenciales;
 import com.avellaneda.pruebamongo.Model.RestMessage;
 import com.avellaneda.pruebamongo.Model.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,27 @@ public class UsuariosController {
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
         }
     }
+
+
+    @GetMapping("/login")
+    public ResponseEntity<?> getUsuarioByCredenciales(@RequestParam String email, @RequestParam String password){
+        try {
+            // find by email and password
+            Usuarios usuario = usuarioRepository.findByEmailAndPassword(email, password);
+
+            if(usuario != null){
+                RestMessage message = new RestMessage(200, "Usuario encontrado", null, null, usuario, null);
+                return ResponseEntity.status(200).body(message);
+            } else {
+                RestMessage message = new RestMessage(404, "Usuario no encontrado", null, null, null, null);
+                return ResponseEntity.status(404).body(message);
+            }
+        } catch(Exception e){
+            RestMessage message = new RestMessage(500, "Error", e.getMessage(), null, null, null);
+            return ResponseEntity.status(500).body(message);
+        }
+    }
+
 
     // get user by id
     @GetMapping("/{id}")
