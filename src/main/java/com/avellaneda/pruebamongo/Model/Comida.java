@@ -3,12 +3,14 @@ package com.avellaneda.pruebamongo.Model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Getter
+@ToString
 @Document(collection = "Comidas")
 public class Comida {
     @Id
@@ -20,7 +22,7 @@ public class Comida {
     private double precio;
     private String imagenBASE64;
 
-    @Getter
+    @Getter 
     @Setter
     @NoArgsConstructor
     public static class InformacionAdicional {
