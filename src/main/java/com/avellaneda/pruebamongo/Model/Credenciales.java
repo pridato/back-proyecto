@@ -9,6 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @Getter
 public class Credenciales {
-    private String email;
+    private String usuario;
     private String password;
 }

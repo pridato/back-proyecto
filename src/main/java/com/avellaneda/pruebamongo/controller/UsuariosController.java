@@ -1,8 +1,9 @@
 package com.avellaneda.pruebamongo.controller;
 
-import com.avellaneda.pruebamongo.Model.Credenciales;
+import com.avellaneda.pruebamongo.Model.Cocinero;
 import com.avellaneda.pruebamongo.Model.RestMessage;
 import com.avellaneda.pruebamongo.Model.Usuarios;
+import com.avellaneda.pruebamongo.repository.CocineroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,8 @@ public class UsuariosController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
+    @Autowired
+    private CocineroRepository cocineroRepository;
     // save a new user post
 
     @PostMapping("/add")
@@ -54,8 +56,17 @@ public class UsuariosController {
             Usuarios usuario = usuarioRepository.findByEmailAndPassword(email, password);
 
             if(usuario != null){
-                RestMessage message = new RestMessage(200, "Usuario encontrado", null, null, usuario, null);
-                return ResponseEntity.status(200).body(message);
+                if(!usuario.getId_cocinero().isEmpty()){
+                    // crear objeto cocinero enviarlo en otros datos
+                    Cocinero cocinero = cocineroRepository.findById(usuario.getId_cocinero()).orElse(new Cocinero());
+                    RestMessage message = new RestMessage(200, "Usuario encontrado", null, null, usuario, cocinero);
+                    return ResponseEntity.status(200).body(message);
+                }
+                else{
+                    RestMessage message = new RestMessage(200, "Usuario encontrado sin cocinero...", null, null, usuario, null);
+                    return ResponseEntity.status(200).body(message);
+                }
+
             } else {
                 RestMessage message = new RestMessage(404, "Usuario no encontrado", null, null, null, null);
                 return ResponseEntity.status(404).body(message);

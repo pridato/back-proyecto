@@ -21,6 +21,7 @@ public class Comida {
     private InformacionAdicional informacionAdicional;
     private double precio;
     private String imagenBASE64;
+    private String especificacion;
 
     @Getter 
     @Setter

@@ -31,4 +31,6 @@ public class Usuarios {
     private int telefono;
     @NonNull
     private Date fechaRegistro;
+    @NonNull
+    private String id_cocinero;
 }
