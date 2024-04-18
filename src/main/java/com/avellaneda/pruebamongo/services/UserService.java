@@ -3,6 +3,7 @@ package com.avellaneda.pruebamongo.services;
 import com.avellaneda.pruebamongo.Model.RestMessage;
 import com.avellaneda.pruebamongo.Model.Usuarios;
 import com.avellaneda.pruebamongo.repository.UsuarioRepository;
+import com.avellaneda.pruebamongo.security.JwtTokenProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class UserService {
   @Autowired
   private UsuarioRepository usuarioRepository;
 
-
+  @Autowired
+  private JwtTokenProvider jwtTokenProvider;
   /**
    *
    * @param usuario
@@ -51,6 +53,7 @@ public class UserService {
       // Por el momento no añadido.
       restMessage.setCodigo(0);
       restMessage.setDatosCliente(usuario);
+      restMessage.setToken(jwtTokenProvider.generarToken(usuario));
     }
 
     return restMessage;

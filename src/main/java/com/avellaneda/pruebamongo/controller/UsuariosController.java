@@ -13,7 +13,7 @@ import com.avellaneda.pruebamongo.repository.UsuarioRepository;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/Cliente")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UsuariosController {
 
