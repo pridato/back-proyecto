@@ -1,16 +1,12 @@
 package com.avellaneda.pruebamongo.controller;
 
-import com.avellaneda.pruebamongo.Model.Cocinero;
 import com.avellaneda.pruebamongo.Model.RestMessage;
 import com.avellaneda.pruebamongo.Model.Usuarios;
-import com.avellaneda.pruebamongo.repository.CocineroRepository;
 import com.avellaneda.pruebamongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.avellaneda.pruebamongo.repository.UsuarioRepository;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/Cliente")

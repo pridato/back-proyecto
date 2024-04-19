@@ -32,5 +32,5 @@ public class Usuarios {
     @NonNull
     private Date fechaRegistro;
     @NonNull
-    private String id_cocinero;
+    private String rol;
 }
